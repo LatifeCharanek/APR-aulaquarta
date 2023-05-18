@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<style>
+   
+    .div1 {
+        width: 500px;
+        height: 70px;
+        padding: 10px;
+        margin: 20px;
+        margin-bottom: 50px;
+        border: 1px solid #202121;
+    }
+
+
+    .container-box{
+        display: inline-block;
+        margin: 20px;
+        margin-bottom: 50px;
+        background-color: rgb(244, 127, 255);
+    }
+        
+    .divcentral {
+   float: left;
+    }
+
+
+</style>
+</head>
+<body>
+    <p>Arraste a imagem para dentro do retangulo :) </p>
+    <div class="divcentral">
+        <div class="container-box">
+            <div class= "div1"ondrop="drop(event)" ondragover="allowDrop(event)">
+                <img id="drag1" src="aquario.jpeg" draggable="true" ondragstart="drag(event)"width="333px" height="80px">
+            </div>
+            <div class= "div1"ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class= "div1"ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class= "div1"ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            
+        </div>
+    </div> 
+    <div class="divcentral">
+        <div class="container-box">
+            <div class= "div1"ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class= "div1"ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class= "div1"ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class= "div1"ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </div>
+    </div> 
+</body>
+<script>
+    var pesoTotal = 0
+
+    function allowDrop(ev){
+        ev.preventDefault();
+    }
+    function drag (ev){
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+    function drop(ev){
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+    
+
+//Adicionar ou subtituir o peso da imagem ao peso total
+ if (ev.target.id === "div2"){
+    pesoTotal += parseInt(event.target.childNodes[0].getAttribute("data-peso"));
+}  else if (ev.target.id === "div1" ){
+    pesoTotal -=parseInt(event.target.childNodes[0].getAttribute("data-peso"));
+}
+
+document.getElementById("pesoTotal").innerHTML = pesoTtotal + "kg"
+}
+
+</script>
+</html>

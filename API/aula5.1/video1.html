@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+ 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <video src="video.mp4" 
+   
+
+   width="500px"
+   height="360px"
+   id="video"
+   ></video>
+   
+   <button id="play-video">Reproduzir<br>Vídeo</button>
+   <button id="pause">Pausar<br>Vídeo</button>
+   <button id="mute">Mutar<br>Vídeo</button>
+   <button id="voltar">Voltar<br>Vídeo</button>
+   <button id="avancar">Avancar<br>Vídeo</button>
+   <button id="telacheia">Tela<br>cheia</button>
+    <script>
+        const video = document.getElementById("video");
+
+        let playVideoBtn = document.getElementById("play-video")
+        playVideoBtn.addEventListener('click', function(ev){
+            ev.preventDefault();
+            video.play();
+ })
+        let pauseVideoBtn = document.getElementById("pause")
+        pauseVideoBtn.addEventListener('click', function(ev){
+                    ev.preventDefault();
+            video.pause();
+        })
+
+        let muteVideoBtn = document.getElementById("mute")
+        muteVideoBtn.addEventListener('click', function(ev){
+                    ev.preventDefault();
+            video.muted=true;
+        })
+
+        let voltarVideoBtn = document.getElementById("voltar")
+        voltarVideoBtn.addEventListener('click', function(ev){
+            ev.preventDefault();
+            video.currentTime -=5;
+        })
+        let avancarVideoBtn = document.getElementById("avancar")
+        avancarVideoBtn.addEventListener('click', function(ev){
+            ev.preventDefault();
+            video.currentTime +=5;
+        })
+        let telacheiaVideoBtn = document.getElementById("telacheia")
+        telacheiaVideoBtn.addEventListener('click', function(){
+            
+                    video.requestFullscreen();
+                
+        })
+
+
+        
+
+        
+
+
+    </script>
+
+
+
+
+
+
+   <p></p>
+   <!--<iframe width="500" height="360" src="https://www.youtube.com/embed/P_KpV23YKiU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+   autoplay
+   muted
+   loop 
+-->
+<audio src="">
+
+</audio>
+</body>
+
+</html>

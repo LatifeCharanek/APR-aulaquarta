@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geo1</title>
+</head>
+<body>
+    <script
+         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkq9yYSu5y3DsHBXQKXzmHTGeg6pHmC0&callback=initMap&v=weekly" defer>
+
+    </script>
+ 
+    <label>
+        Latidude: <span id="lat"></span>
+    </label>
+
+    <label>
+        Longitude: <span id="lon"></span>
+    </label>
+
+<div id ="map" style="width: 500px; height: 500px;"></div>
+
+    <script>
+        var lat;
+        var lon;
+       
+
+function getLocation(){
+
+    // tetar se não existe a localização
+    if(!navigator.geolocation){
+        // testando se o navegador tem essa API
+        return null;}
+        // se ele passar pelo erro pegamos a localização
+        // Esta função chama o método getCurrentPosition
+        navigator.geolocation.getCurrentPosition(function(pos){
+            // a seguir vamos selecionar o elemento HTML com o ID lat e atualizar o seu conteúdo de texto(innerText) com a latitude obtida a partir do objeto Position(pos.coords.latitude) 
+            document.getElementById("lat").innerText=pos.coords.latitude;
+
+            // a seguir vamos selecionar o elemento HTML com o ID lat e atualizar o seu conteúdo de texto(innerText) com a longitude obtida a partir do objeto Position(pos.coords.longitude) 
+            document.getElementById("lon").innerText=pos.coords.longitude;
+            
+            initMap();
+        });
+    }
+        function initMap() {
+  
+    const uluru = { lat: lat, lng: lon };
+
+   
+        map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 15,
+        center: uluru,
+        });
+        
+        const marker = new google.maps.Marker({
+        position: uluru,
+        map: map,
+        });
+        }
+        getLocation();
+    </script>
+</body>
+</html>

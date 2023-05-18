@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag n Drop 2</title>
+
+    <style>
+        #div1 {
+            width: 335px;
+            height: 89px;
+            padding: 10px;
+            margin-bottom: 25px;            
+            border: 1px solid #202121;
+        }
+        #div2 {
+            width: 335px;
+            height: 89px;
+            padding: 10px;            
+            border: 1px solid #202121;
+        }
+
+        .pai{  
+            padding:3%;         
+
+        }
+
+        .mae{display: flex;
+            flex-direction: row;            
+            }
+
+            .espaco{
+                padding:10px;
+            }
+    </style>
+    
+    <script>
+        let pesoTotal = 0;
+
+
+        function allowDrop(ev) { 
+            ev.preventDefault(); 
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        
+
+
+        // Adicionar ou subtrair o peso da imagem ao peso total
+
+        if(ev.target.id === "div2")
+        {
+            console.log('aqui')
+            pesoTotal += parseInt(event.target.childNodes[0].getAttribute("data-peso"));
+        }else if(ev.target.id ==="div1"){
+            console.log('aqui2')
+            pesoTotal -= parseInt(event.target.childNodes[0].getAttribute("data-peso"));
+
+        }         
+        //Exibir o peso total na página
+        document.getElementById("pesoTotal").innerHTML = pesoTotal + "Kg";        
+    }
+
+        function dragEnd(ev){
+            if(ev.target.parentNode.id != "div2"){
+                //Subtrair o peso da imagm ao peso total
+                pesoTotal -= parseInt(ev.target.getAttribute("data-peso"));
+                //Exibir o peso total na pagina
+                document.getElementById("pesoTotal").innerHTML = pesoTotal + "Kg";
+            }else if(ev.target.parentNode.id ==="div2"){
+                pesoTotal += parseInt(ev.target.getAttribute("data-peso"));
+            }
+
+                
+            }
+        
+        </script>
+
+</head>
+
+<body>
+         
+                    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"><img id="imagem1" src="aquario.jpeg"  data-peso="20" draggable="true" ondragstart="drag(event)"
+                        ondragend="dragEnd(event)" width="336" height="69"
+                        width="176" height="89"></div>
+               
+
+                
+                    <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                    <p>o peso total é <span id="pesoTotal"> 0Kg</span></p>
+            
+
+</body>
+</html>
